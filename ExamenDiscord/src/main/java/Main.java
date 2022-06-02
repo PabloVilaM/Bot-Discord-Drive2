@@ -30,6 +30,7 @@ import java.util.Optional;
 import java.io.File;
 
 public class Main {
+
     final static String token = "OTUzNjI4MjQxNTE4ODIxNDI2.YjHVgg.vtooj79fOfffIUE6xSjkPqCkQJY";
     final static DiscordClient client = DiscordClient.create(token); //Creamos un cliente de Discord (para el bot).
     final static GatewayDiscordClient gateway = client.login().block(); //Creamos el gateaway para que dicho cliente se logee.
@@ -61,15 +62,12 @@ public class Main {
                Optional<String> opt = Optional.of(":fire:");
                User usuario = new User(gateway,data);
                String avatarUrl = usuario.getAvatarUrl();
-
-
                String id = usuario.getId().toString();
                String idrecor = id.replace("Snowflake{", "");
                String idrecor2 = idrecor    .replace("}","");
                double rand = Math.random()*1000000000;
                long randLong = (long)rand;
                String sugerencia = message.getContent().replace("!suggest", "");
-
                  String IMAGE_URL = "https://cdn.betterttv.net/emote/55028cd2135896936880fdd7/3x";
                   String ANY_URL = "https://www.youtube.com/watch?v=5zwY50-necw";
                 EmbedCreateSpec.Builder builder =  EmbedCreateSpec.builder();
@@ -87,12 +85,10 @@ public class Main {
                 builder.thumbnail(avatarUrl);
                 builder.footer("Usuario id: " + idrecor2 + "  sID:" + randLong, null);
                 builder.timestamp(Instant.now());
-
                channel.createMessage(builder.build()).flatMap(msg -> msg.addReaction(ReactionEmoji.unicode("\u2611"))
                                .then(msg.addReaction(ReactionEmoji.unicode("\u2796")))
                                .then(msg.addReaction(ReactionEmoji.unicode("\u274c"))))
                        .subscribe();
-
             }*/
             if (message.getContent().startsWith("!ping")){
                 channel.createMessage("Test")
